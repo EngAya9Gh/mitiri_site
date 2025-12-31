@@ -24,9 +24,34 @@ export class ArticleRepository implements IArticleRepository {
         });
     }
 
-    async findAll(): Promise<Article[]> {
+    async findAll(options?: { search?: string, skip?: number, take?: number }): Promise<Article[]> {
+        const where = options?.search ? {
+            OR: [
+                { title_en: { contains: options.search } },
+                { title_ar: { contains: options.search } },
+                { content_en: { contains: options.search } },
+                { content_ar: { contains: options.search } },
+            ]
+        } : {};
+
         return this.db.article.findMany({
+            where,
             orderBy: { publishedAt: 'desc' },
+            skip: options?.skip,
+            take: options?.take,
         });
+    }
+
+    async count(options?: { search?: string }): Promise<number> {
+        const where = options?.search ? {
+            OR: [
+                { title_en: { contains: options.search } },
+                { title_ar: { contains: options.search } },
+                { content_en: { contains: options.search } },
+                { content_ar: { contains: options.search } },
+            ]
+        } : {};
+
+        return this.db.article.count({ where });
     }
 }

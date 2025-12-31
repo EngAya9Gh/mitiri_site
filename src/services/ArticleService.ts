@@ -17,7 +17,16 @@ export class ArticleService {
         return this.articleRepository.findBySlug(slug, locale);
     }
 
-    async getAllArticles(): Promise<Article[]> {
-        return this.articleRepository.findAll();
+    async getAllArticles(options?: { search?: string, page?: number, limit?: number }): Promise<Article[]> {
+        const skip = options?.page && options?.limit ? (options.page - 1) * options.limit : undefined;
+        return this.articleRepository.findAll({
+            search: options?.search,
+            skip: skip,
+            take: options?.limit
+        });
+    }
+
+    async getArticlesCount(search?: string): Promise<number> {
+        return this.articleRepository.count({ search });
     }
 }

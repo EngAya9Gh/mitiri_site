@@ -145,5 +145,14 @@
         "editUser": "Edit User",
         "resetPassword": "Reset Password",
         "role": "Role"
+    },
+    "Blog": {
+        "search": "Search articles...",
+        "noResults": "No articles found matching your search.",
+        "related": "Related Articles",
+        "share": "Share this article",
+        "next": "Next",
+        "prev": "Previous",
+        "page": "Page"
     }
 }
