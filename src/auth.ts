@@ -1,11 +1,13 @@
-import NextAuth, { NextAuthConfig } from 'next-auth';
+import NextAuth from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { authConfig } from './auth.config';
 import { UserRepository } from './repositories/UserRepository';
 import bcrypt from 'bcryptjs';
 
 const userRepository = new UserRepository();
 
-export const authConfig: NextAuthConfig = {
+export const { handlers, auth, signIn, signOut } = NextAuth({
+    ...authConfig,
     providers: [
         CredentialsProvider({
             name: 'Credentials',
@@ -26,43 +28,11 @@ export const authConfig: NextAuthConfig = {
                     id: user.id.toString(),
                     name: user.name,
                     email: user.email,
-                    role: user.role, // Pass role to session
+                    role: user.role,
                 };
             },
         }),
     ],
-    pages: {
-        signIn: '/admin/login',
-    },
-    callbacks: {
-        async jwt({ token, user, trigger, session }) {
-            if (user) {
-                token.role = user.role;
-            }
-            return token;
-        },
-        async session({ session, token }) {
-            if (token?.role) {
-                session.user.role = token.role as string;
-            }
-            return session;
-        },
-        authorized({ auth, request: { nextUrl } }) {
-            const isLoggedIn = !!auth?.user;
-            const isOnAdmin = nextUrl.pathname.includes('/admin');
-            const isOnLoginPage = nextUrl.pathname.includes('/admin/login');
-
-            if (isOnAdmin && !isOnLoginPage) {
-                if (isLoggedIn) return true;
-                return false; // Redirect to login
-            }
-            return true;
-        },
-    },
-    session: {
-        strategy: 'jwt'
-    },
-    secret: process.env.AUTH_SECRET // Ensure this is in .env or generated
-};
-
-export const { handlers, auth, signIn, signOut } = NextAuth(authConfig);
+    secret: process.env.AUTH_SECRET,
+    session: { strategy: 'jwt' },
+});
