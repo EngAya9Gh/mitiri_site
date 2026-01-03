@@ -3,6 +3,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import StructuredData from '@/components/seo/StructuredData';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import { getSettings } from '@/actions/admin/settings';
 
 type Props = {
     children: ReactNode;
@@ -11,6 +12,7 @@ type Props = {
 
 export default async function PublicLayout({ children, params }: Props) {
     const { locale } = await params;
+    const settings = await getSettings();
 
     return (
         <>
@@ -20,7 +22,8 @@ export default async function PublicLayout({ children, params }: Props) {
                 {children}
             </main>
             <Footer locale={locale} />
-            <WhatsAppButton />
+            {/* @ts-ignore */}
+            <WhatsAppButton phoneNumber={settings?.whatsapp || ''} />
         </>
     );
 }

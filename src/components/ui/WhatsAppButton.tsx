@@ -2,10 +2,15 @@
 
 import { MessageCircle } from 'lucide-react';
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ phoneNumber }: { phoneNumber?: string }) {
+    if (!phoneNumber) return null;
+
+    // Remove any non-digit characters from the phone number for the URL
+    const cleanNumber = phoneNumber.replace(/\D/g, '');
+
     return (
         <a
-            href="https://wa.me/1234567890" // Replace with actual number
+            href={`https://wa.me/${cleanNumber}`}
             target="_blank"
             rel="noopener noreferrer"
             style={{

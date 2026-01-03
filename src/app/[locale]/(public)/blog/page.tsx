@@ -49,7 +49,7 @@ export default async function BlogPage({
                 subtitle={locale === 'ar' ? 'اكتشف أحدث المقالات والرؤى القانونية في القانون التجاري والتدريب والتحول وحماية الملكية الفكرية.' : 'Explore our latest articles and legal insights on Commercial Law, Intellectual Property, and Business Legislation.'}
             />
 
-            <div className="container" style={{ marginTop: '100px' }}>
+            <div className="container" style={{ marginTop: '100px', maxWidth: '1400px' }}>
                 <BlogSearch placeholder={t('search')} locale={locale} />
 
                 {articles.length === 0 ? (
@@ -60,7 +60,8 @@ export default async function BlogPage({
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))',
-                        gap: '40px'
+                        gap: '40px',
+                        maxWidth: '100%',
                     }}>
                         {articles.map((article, index) => {
                             const title = locale === 'ar' ? (article.title_ar || article.title_en) : article.title_en;

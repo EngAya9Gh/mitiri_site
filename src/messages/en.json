@@ -144,7 +144,8 @@
         "addUser": "Add New User",
         "editUser": "Edit User",
         "resetPassword": "Reset Password",
-        "role": "Role"
+        "role": "Role",
+        "whatsapp": "WhatsApp Number"
     },
     "Blog": {
         "search": "Search articles...",
