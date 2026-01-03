@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Metadata' });
 
-    const baseUrl = 'https://wakeel.sa';
+    const baseUrl = 'https://mitrilawoffice.com';
 
     return {
         metadataBase: new URL(baseUrl),
@@ -51,7 +51,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
                     url: '/og-image.png',
                     width: 1200,
                     height: 630,
-                    alt: 'WakeeL Technologies',
+                    alt: t('title'),
                 },
             ],
         },

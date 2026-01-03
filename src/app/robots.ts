@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: ['/api/', '/admin/'],
         },
-        sitemap: 'https://wakeel.sa/sitemap.xml',
+        sitemap: 'https://mitrilawoffice.com/sitemap.xml',
     };
 }

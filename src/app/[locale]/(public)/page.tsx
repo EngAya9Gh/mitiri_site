@@ -12,10 +12,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     const ctaT = await getTranslations({ locale, namespace: 'HomeCTA' });
 
     const services = [
-        { key: 'webDev', icon: '💻', color: '#0EA5E9', image: '/hero.png' },
-        { key: 'mobile', icon: '📱', color: '#8B5CF6', image: '/mobile-app.png' },
-        { key: 'ai', icon: '🤖', color: '#10B981', image: '/ai-service.png' },
-        { key: 'marketing', icon: '📈', color: '#F43F5E', image: '/marketing.png' }
+        { key: 'webDev', icon: '🏢', color: 'var(--color-primary)', image: '/hero.png' },
+        { key: 'mobile', icon: '📄', color: 'var(--color-secondary)', image: '/mobile-app.png' },
+        { key: 'ai', icon: '⚖️', color: 'var(--color-accent)', image: '/ai-service.png' },
+        { key: 'marketing', icon: '🛡️', color: '#1E293B', image: '/marketing.png' }
     ];
 
     const stats = [
@@ -29,33 +29,33 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         <main>
             {/* Hero Section - Immersive Full-Width Design */}
             <section style={{
-                height: '100vh',
+                height: '92vh',
                 width: '100%',
                 position: 'relative',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center',
                 overflow: 'hidden',
-                color: 'white',
-                background: 'var(--color-secondary)',
+                color: 'var(--color-secondary)',
+                background: '#fcfcfc',
                 padding: 0
             }}>
-                {/* Background Image with Dark Overlay */}
+                {/* Background Image / Pattern Area */}
                 <div style={{
                     position: 'absolute',
                     top: 0,
-                    left: 0,
                     right: 0,
-                    bottom: 0,
-                    zIndex: 0
-                }}>
+                    width: '55%',
+                    height: '100%',
+                    zIndex: 0,
+                    clipPath: locale === 'en' ? 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' : 'polygon(0 0, 85% 0, 100% 100%, 0% 100%)',
+                    display: typeof window !== 'undefined' && window.innerWidth < 1024 ? 'none' : 'block'
+                }} className="hero-image-clip">
                     <Image
-                        src="/hero.png"
-                        alt="Digital Transformation"
+                        src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1200"
+                        alt="MITRI IP & Law Office"
                         fill
-                        style={{ objectFit: 'cover', opacity: 0.5 }}
+                        style={{ objectFit: 'cover' }}
                         priority
-                        sizes="100vw"
                     />
                     <div style={{
                         position: 'absolute',
@@ -63,35 +63,40 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'radial-gradient(circle at center, transparent 0%, rgba(16, 15, 15, 0.85) 100%)'
+                        background: 'linear-gradient(90deg, #fcfcfc 0%, rgba(252, 252, 252, 0) 100%)',
+                        zIndex: 1
                     }}></div>
                 </div>
 
-                <div className="container" style={{ position: 'relative', zIndex: 2, textAlign: 'center' }}>
-                    <div className="animate-fade-in">
+                <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+                    <div className="animate-fade-in" style={{ maxWidth: '650px', textAlign: locale === 'ar' ? 'right' : 'left' }}>
                         <div style={{
-                            display: 'inline-block',
-                            padding: '10px 24px',
-                            background: 'rgba(255, 102, 0, 0.1)',
-                            border: '1px solid var(--color-primary)',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '12px',
+                            padding: '10px 20px',
+                            background: 'white',
+                            border: '1px solid #e2e8f0',
                             borderRadius: '100px',
                             color: 'var(--color-primary)',
-                            fontWeight: '800',
-                            fontSize: '0.9rem',
+                            fontWeight: '700',
+                            fontSize: '0.85rem',
                             textTransform: 'uppercase',
                             letterSpacing: '2px',
-                            marginBottom: '32px'
+                            marginBottom: '32px',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
                         }}>
+                            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--color-primary)' }}></span>
                             {t('getStarted')}
                         </div>
 
                         <h1 style={{
-                            fontSize: 'clamp(3rem, 10vw, 7rem)',
-                            lineHeight: 0.9,
+                            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+                            lineHeight: 1.1,
                             fontWeight: '950',
-                            letterSpacing: '-4px',
+                            letterSpacing: '-2px',
                             marginBottom: '32px',
-                            color: 'white'
+                            color: 'var(--color-secondary)'
                         }}>
                             {t('title').split(' ').map((word, i) => (
                                 <span key={i} style={{ display: 'inline-block' }}>
@@ -102,33 +107,31 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                         </h1>
 
                         <p style={{
-                            fontSize: 'clamp(1.2rem, 3vw, 1.8rem)',
-                            lineHeight: 1.4,
-                            marginBottom: '56px',
-                            maxWidth: '850px',
-                            marginInline: 'auto',
+                            fontSize: '1.25rem',
+                            lineHeight: 1.6,
+                            marginBottom: '48px',
+                            color: 'var(--text-muted)',
                             fontWeight: '500',
-                            opacity: 0.9
+                            maxWidth: '550px'
                         }}>
                             {t('subtitle')}
                         </p>
 
-                        <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', justifyContent: locale === 'ar' ? 'flex-start' : 'flex-start' }}>
                             <Link href="/contact" className="btn-primary" style={{
-                                padding: '20px 56px',
-                                fontSize: '1.2rem',
-                                borderRadius: '16px',
-                                boxShadow: '0 20px 40px var(--color-primary-glow)'
+                                padding: '18px 48px',
+                                fontSize: '1.1rem',
+                                borderRadius: '12px',
                             }}>
                                 {t('contact')}
                             </Link>
                             <Link href="/services" className="btn-secondary" style={{
-                                padding: '20px 56px',
-                                fontSize: '1.2rem',
-                                borderRadius: '16px',
-                                background: 'rgba(255,255,255,0.05)',
-                                color: 'white',
-                                border: '1px solid rgba(255,255,255,0.2)'
+                                padding: '18px 48px',
+                                fontSize: '1.1rem',
+                                borderRadius: '12px',
+                                background: 'white',
+                                color: 'var(--color-secondary)',
+                                border: '1px solid #e2e8f0'
                             }}>
                                 {t('services')}
                             </Link>
@@ -242,81 +245,60 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
                         </p>
                     </div>
 
-                    <div className="services-grid-home">
+                    <div className="services-grid-home-row" style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(4, 1fr)',
+                        gap: '24px'
+                    }}>
                         {services.map((s, i) => (
                             <Reveal key={s.key}>
-                                <div className="glass-card" style={{
-                                    animationDelay: `${i * 0.1}s`,
-                                    background: 'white',
-                                    padding: '0',
-                                    border: '1px solid #F1F5F9',
-                                    position: 'relative',
-                                    borderRadius: '48px',
-                                    textAlign: 'start',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    height: '100%',
-                                    overflow: 'hidden'
-                                }}>
-                                    {/* Thumbnail Image */}
-                                    <div style={{
-                                        position: 'relative',
-                                        width: '100%',
-                                        height: '220px',
-                                        overflow: 'hidden'
+                                <div className="service-card-modern" style={{ animationDelay: `${i * 0.1}s` }}>
+                                    {/* Icon Background Circle */}
+                                    <div className="icon-box" style={{
+                                        background: `${s.color}08`,
+                                        color: s.color,
+                                        border: `1px solid ${s.color}15`
                                     }}>
-                                        <Image
-                                            src={s.image}
-                                            alt={servicesT(s.key as any)}
-                                            fill
-                                            style={{ objectFit: 'cover' }}
-                                            sizes="(max-width: 768px) 100vw, 33vw"
-                                        />
-                                        {/* Overlay for icon */}
-                                        <div style={{
-                                            position: 'absolute',
-                                            bottom: '-36px',
-                                            right: locale === 'en' ? '30px' : 'auto',
-                                            left: locale === 'ar' ? '30px' : 'auto',
-                                            width: '72px',
-                                            height: '72px',
-                                            borderRadius: '24px',
-                                            background: 'white',
-                                            display: 'flex',
-                                            alignItems: 'center',
-                                            justifyContent: 'center',
-                                            fontSize: '2.5rem',
-                                            color: s.color,
-                                            boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-                                            zIndex: 2
-                                        }}>
-                                            {s.icon}
-                                        </div>
+                                        {s.icon}
                                     </div>
 
-                                    <div style={{ padding: '60px 40px 45px', display: 'flex', flexDirection: 'column', gap: '20px', flex: 1 }}>
-                                        <div>
-                                            <h3 style={{ fontSize: '1.75rem', fontWeight: '900', marginBottom: '16px', color: 'var(--color-secondary)' }}>
-                                                {servicesT(s.key as any)}
-                                            </h3>
-                                            <p style={{ color: 'var(--text-muted)', lineHeight: '1.8', marginBottom: '32px', fontSize: '1.1rem', fontWeight: '500' }}>
-                                                {servicesT(`${s.key}Desc` as any)}
-                                            </p>
-                                        </div>
-                                        <div style={{ marginTop: 'auto' }}>
-                                            <Link href="/services" style={{
-                                                color: 'var(--color-primary)',
-                                                fontWeight: '800',
-                                                display: 'inline-flex',
-                                                alignItems: 'center',
-                                                gap: '12px',
-                                                fontSize: '1.1rem',
-                                                padding: '12px 0',
-                                                transition: 'all 0.3s ease'
-                                            }}>
-                                                {t('viewService')} <span style={{ fontSize: '1.4rem' }}>{locale === 'en' ? '→' : '←'}</span>
-                                            </Link>
-                                        </div>
+                                    <div>
+                                        <h3 style={{ fontSize: '1.6rem', fontWeight: '900', marginBottom: '16px', color: 'var(--color-secondary)', letterSpacing: '-0.5px' }}>
+                                            {servicesT(s.key as any)}
+                                        </h3>
+                                        <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '1.05rem', fontWeight: '500', marginBottom: '8px' }}>
+                                            {servicesT(`${s.key}Desc` as any)}
+                                        </p>
+                                    </div>
+
+                                    <div style={{ marginTop: 'auto' }}>
+                                        <Link href="/services" style={{
+                                            color: s.color,
+                                            fontWeight: '800',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '12px',
+                                            fontSize: '1rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '1px',
+                                            transition: 'all 0.3s ease'
+                                        }}>
+                                            {t('viewService')} <span style={{ fontSize: '1.2rem' }}>{locale === 'en' ? '→' : '←'}</span>
+                                        </Link>
+                                    </div>
+
+                                    {/* Decorative numbering */}
+                                    <div style={{
+                                        position: 'absolute',
+                                        top: '20px',
+                                        right: '30px',
+                                        fontSize: '4rem',
+                                        fontWeight: '900',
+                                        color: '#000',
+                                        opacity: 0.02,
+                                        pointerEvents: 'none'
+                                    }}>
+                                        0{i + 1}
                                     </div>
                                 </div>
                             </Reveal>

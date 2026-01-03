@@ -46,7 +46,18 @@ export const authConfig: NextAuthConfig = {
                 session.user.role = token.role as string;
             }
             return session;
-        }
+        },
+        authorized({ auth, request: { nextUrl } }) {
+            const isLoggedIn = !!auth?.user;
+            const isOnAdmin = nextUrl.pathname.includes('/admin');
+            const isOnLoginPage = nextUrl.pathname.includes('/admin/login');
+
+            if (isOnAdmin && !isOnLoginPage) {
+                if (isLoggedIn) return true;
+                return false; // Redirect to login
+            }
+            return true;
+        },
     },
     session: {
         strategy: 'jwt'

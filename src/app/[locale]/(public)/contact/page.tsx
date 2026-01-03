@@ -65,8 +65,8 @@ export default function ContactPage() {
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                             <label htmlFor="phone" style={{ fontWeight: '700', color: '#111', fontSize: '0.95rem' }}>{t('phone')}</label>
                             <div style={{ display: 'flex', gap: '0.5rem' }}>
-                                <CountrySelector name="countryCode" defaultValue="+966" />
-                                <input type="tel" id="phone" name="phone" placeholder="50 000 0000"
+                                <CountrySelector name="countryCode" defaultValue="+963" />
+                                <input type="tel" id="phone" name="phone" placeholder="11 4445 441"
                                     style={{ flex: 1, padding: '1rem', borderRadius: '12px', border: '1px solid #eee', background: '#fcfcfc', outlineColor: 'var(--color-primary)', fontSize: '1rem' }}
                                 />
                             </div>

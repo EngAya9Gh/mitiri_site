@@ -51,7 +51,7 @@ export default async function ArticlePage({ params }: Props) {
     const title = locale === 'ar' ? (article.title_ar || article.title_en) : article.title_en;
     const content = locale === 'ar' ? (article.content_ar || article.content_en) : article.content_en;
 
-    const currentUrl = `https://wakeel.sa/${locale}/blog/${slug}`;
+    const currentUrl = `https://mitrilawoffice.com/${locale}/blog/${slug}`;
 
     return (
         <main style={{ background: '#F8FAFC', minHeight: '100vh', paddingBottom: '160px', paddingTop: '120px' }}>
@@ -118,7 +118,7 @@ export default async function ArticlePage({ params }: Props) {
                                     👤
                                 </div>
                                 <div>
-                                    <span style={{ display: 'block', fontWeight: 800, color: 'var(--color-secondary)', fontSize: '1rem' }}>WakeeL Editorial Team</span>
+                                    <span style={{ display: 'block', fontWeight: 800, color: 'var(--color-secondary)', fontSize: '1rem' }}>MITRI Editorial Team</span>
                                     <span style={{ display: 'block', color: 'var(--text-muted)', fontSize: '0.9rem', fontWeight: 500 }}>
                                         {new Date(article.publishedAt).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                                     </span>

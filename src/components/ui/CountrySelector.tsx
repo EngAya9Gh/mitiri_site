@@ -11,13 +11,13 @@ interface Country {
 }
 
 const countryCodes: Country[] = [
+    { code: '+963', country: 'Syria', flag: '🇸🇾', flagImg: '/flags/sy.svg' },
     { code: '+966', country: 'Saudi Arabia', flag: '🇸🇦' },
     { code: '+971', country: 'UAE', flag: '🇦🇪' },
     { code: '+965', country: 'Kuwait', flag: '🇰🇼' },
     { code: '+974', country: 'Qatar', flag: '🇶🇦' },
     { code: '+973', country: 'Bahrain', flag: '🇧🇭' },
     { code: '+968', country: 'Oman', flag: '🇴🇲' },
-    { code: '+963', country: 'Syria', flag: '🇸🇾', flagImg: '/flags/sy.svg' },
     { code: '+20', country: 'Egypt', flag: '🇪🇬' },
     { code: '+962', country: 'Jordan', flag: '🇯🇴' },
     { code: '+961', country: 'Lebanon', flag: '🇱🇧' },
@@ -25,7 +25,7 @@ const countryCodes: Country[] = [
     { code: '+44', country: 'UK', flag: '🇬🇧' },
 ];
 
-export default function CountrySelector({ name, defaultValue = '+966' }: { name: string; defaultValue?: string }) {
+export default function CountrySelector({ name, defaultValue = '+963' }: { name: string; defaultValue?: string }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState(countryCodes.find(c => c.code === defaultValue) || countryCodes[0]);
     const containerRef = useRef<HTMLDivElement>(null);

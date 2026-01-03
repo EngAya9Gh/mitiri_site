@@ -2,7 +2,7 @@ import { Link } from '@/i18n/routing';
 import { getTranslations } from 'next-intl/server';
 import Logo from '@/components/common/Logo';
 import prisma from '@/lib/prisma';
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
 
 export default async function Footer({ locale }: { locale: string }) {
     const t = await getTranslations({ locale, namespace: 'Footer' });
@@ -49,15 +49,15 @@ export default async function Footer({ locale }: { locale: string }) {
                             <Logo color="light" />
                         </div>
                         <p style={{
-                            color: '#94A3B8',
+                            color: 'rgba(255,255,255,0.7)',
                             lineHeight: '1.8',
                             fontSize: '1.1rem',
                             marginBottom: '3rem',
                             maxWidth: '400px'
                         }}>
                             {locale === 'ar'
-                                ? 'نحول الرؤى الرقمية إلى واقع ملموس. شريككم التقني الموثوق في المملكة العربية السعودية والشرق الأوسط.'
-                                : 'Transforming digital visions into reality. Your trusted tech partner in Saudi Arabia and the Middle East.'}
+                                ? 'نحمي حقوقكم ومصالحكم التجارية بخبرة قانونية متكاملة. شريككم القانوني الموثوق في دمشق والشرق الأوسط.'
+                                : 'Protecting your rights and business interests with integrated legal expertise. Your trusted legal partner in Damascus and the Middle East.'}
                         </p>
 
                         <div style={{ display: 'flex', gap: '1.2rem' }}>
@@ -82,42 +82,33 @@ export default async function Footer({ locale }: { locale: string }) {
                         </nav>
                     </div>
 
-                    {/* Offices Section - Fixed side-by-side */}
-                    <div style={{ gridColumn: 'span 1' }}>
+                    {/* Office Contact Info */}
+                    <div>
                         <h4 style={{ fontSize: '1.25rem', fontWeight: '800', marginBottom: '2.5rem', borderBottom: '2px solid var(--color-primary)', display: 'inline-block', paddingBottom: '0.5rem' }}>
                             {t('offices')}
                         </h4>
-
-                        <div className="offices-grid">
-                            {/* Riyadh */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <h5 style={{ fontWeight: '800', fontSize: '1rem', color: 'white' }}>{t('riyadhOffice')}</h5>
-                                <p style={{ fontSize: '0.9rem', color: '#94A3B8', lineHeight: '1.5' }}>
-                                    <span style={{ color: 'var(--color-primary)' }}>📍</span> {locale === 'ar' ? 'الرياض' : ' Riyadh'}
-                                </p>
-                                <p style={{ fontSize: '0.9rem', color: '#94A3B8', direction: 'ltr', textAlign: locale === 'ar' ? 'right' : 'left' }}>
-                                    📞 {settings?.phone_sa || '+966 50 000 0000'}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            <div>
+                                <h5 style={{ fontWeight: '800', fontSize: '1rem', color: 'white', marginBottom: '0.5rem' }}>{t('syriaOffice')}</h5>
+                                <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6' }}>
+                                    <span style={{ color: 'var(--color-primary)', marginRight: '10px' }}>📍</span>
+                                    {locale === 'ar' ? 'دمشق، سوريا - ص.ب 35630' : 'P.O.Box: 35630 Damascus - Syria'}
                                 </p>
                             </div>
-
-                            {/* Syria */}
-                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                                <h5 style={{ fontWeight: '800', fontSize: '1rem', color: 'white' }}>{t('syriaOffice')}</h5>
-                                <p style={{ fontSize: '0.9rem', color: '#94A3B8', lineHeight: '1.5' }}>
-                                    <span style={{ color: 'var(--color-primary)' }}>📍</span> {locale === 'ar' ? 'دمشق' : 'Damascus'}
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                                <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)', direction: 'ltr', textAlign: locale === 'ar' ? 'right' : 'left' }}>
+                                    <span style={{ color: 'var(--color-primary)', marginRight: '10px' }}>📞</span>
+                                    +963 11 4445 441
                                 </p>
-                                <p style={{ fontSize: '0.9rem', color: '#94A3B8', direction: 'ltr', textAlign: locale === 'ar' ? 'right' : 'left' }}>
-                                    📞 {settings?.phone_sy || '+963 11 000 0000'}
+                                <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)', direction: 'ltr', textAlign: locale === 'ar' ? 'right' : 'left' }}>
+                                    <span style={{ color: 'var(--color-primary)', marginRight: '10px' }}>📱</span>
+                                    +963 96 4445 441
+                                </p>
+                                <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)' }}>
+                                    <span style={{ color: 'var(--color-primary)', marginRight: '10px' }}>✉</span>
+                                    ghayth@mitrilawoffice.com
                                 </p>
                             </div>
-                        </div>
-
-                        {/* Global Email */}
-                        <div style={{ marginTop: '3rem', padding: '1.5rem', background: 'rgba(255,255,255,0.03)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                            <p style={{ fontSize: '0.95rem', fontWeight: '700' }}>
-                                <span style={{ color: 'var(--color-primary)', marginInlineEnd: '10px' }}>✉</span>
-                                {settings?.email || 'support@wakeel.sa'}
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -130,15 +121,15 @@ export default async function Footer({ locale }: { locale: string }) {
                     flexWrap: 'wrap',
                     gap: '2rem',
                     paddingTop: '3rem',
-                    borderTop: '1px solid rgba(255,255,255,0.05)',
-                    color: '#ffffffff',
+                    borderTop: '1px solid rgba(255,255,255,0.1)',
                     fontSize: '0.95rem',
-                    fontWeight: '600'
+                    fontWeight: '500',
+                    color: 'rgba(255,255,255,0.5)'
                 }}>
-                    <p>© {new Date().getFullYear()} WakeeL Technologies. {t('allRights')}.</p>
+                    <p>© {new Date().getFullYear()} MITRI IP & Law Office. {t('allRights')}.</p>
                     <div style={{ display: 'flex', gap: '2rem' }}>
-                        <a href="#">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                        <a href="#" className="footer-link">Privacy Policy</a>
+                        <a href="#" className="footer-link">Terms of Service</a>
                     </div>
                 </div>
             </div>

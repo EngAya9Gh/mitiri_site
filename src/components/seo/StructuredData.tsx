@@ -2,21 +2,21 @@ export default function StructuredData({ locale }: { locale: string }) {
     const data = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "WakeeL Technologies",
-        "url": "https://wakeel.sa",
-        "logo": "https://wakeel.sa/logo.png",
+        "name": "MITRI IP & Law Office",
+        "url": "https://mitrilawoffice.com",
+        "logo": "https://mitrilawoffice.com/logo.png",
         "description": locale === 'ar'
-            ? "شركة رائدة في مجال تطوير البرمجيات والحلول الرقمية في المملكة العربية السعودية."
-            : "Leading software development and digital solutions company in Saudi Arabia.",
+            ? "مكتب متري للمحاماة والملكيه الفكرية - خبرة قانونية متخصصة في القانون التجاري وقانون الشركات في دمشق، سوريا."
+            : "MITRI IP & Law Office - Leading law firm specializing in Commercial Law and Intellectual Property in Damascus, Syria.",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Olaya St",
-            "addressLocality": "Riyadh",
-            "addressCountry": "SA"
+            "streetAddress": "P.O.Box: 35630",
+            "addressLocality": "Damascus",
+            "addressCountry": "SY"
         },
         "contactPoint": {
             "@type": "ContactPoint",
-            "telephone": "+966-50-000-0000",
+            "telephone": "+963-11-4445-441",
             "contactType": "customer service"
         }
     };

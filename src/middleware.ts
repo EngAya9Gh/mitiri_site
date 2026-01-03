@@ -1,6 +1,7 @@
+import { auth } from "@/auth";
 import createMiddleware from 'next-intl/middleware';
 
-export default createMiddleware({
+const intlMiddleware = createMiddleware({
     // A list of all locales that are supported
     locales: ['en', 'ar'],
 
@@ -8,7 +9,16 @@ export default createMiddleware({
     defaultLocale: 'en'
 });
 
+export default auth((req) => {
+    // NextAuth handles the authorized callback first.
+    // If it returns false, it redirects to the login page defined in auth.ts.
+    // If it returns true, we proceed to intlMiddleware.
+    return intlMiddleware(req);
+});
+
 export const config = {
-    // Match only internationalized pathnames
-    matcher: ['/', '/(ar|en)/:path*']
+    // Match all pathnames except for
+    // - API routes
+    // - Static files (_next/static, _next/image, public files like favicon.ico)
+    matcher: ['/((?!api|_next/static|_next/image|.*\\.svg|.*\\.png|.*\\.jpg|favicon\\.ico).*)']
 };

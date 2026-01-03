@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Navigation' });
     return {
-        title: `${t('blog')} | WakeeL Technologies`,
-        description: locale === 'ar' ? 'اكتشف أحدث المقالات والأفكار في عالم التكنولوجيا.' : 'Explore our latest articles and insights on technology.',
+        title: `${t('blog')} | MITRI IP & Law Office`,
+        description: locale === 'ar' ? 'اكتشف أحدث الرؤى والمقالات القانونية في القانون التجاري والملكية الفكرية.' : 'Explore our latest legal insights and articles on Commercial Law and Intellectual Property.',
     };
 }
 
@@ -46,7 +46,7 @@ export default async function BlogPage({
         <main style={{ paddingBottom: '160px' }}>
             <PageHeader
                 title={locale === 'ar' ? 'المدونة ' : 'Blogs'}
-                subtitle={locale === 'ar' ? 'اكتشف أحدث المقالات والأفكار في عالم التكنولوجيا والتحول الرقمي.' : 'Explore our latest articles and insights on technology and digital transformation.'}
+                subtitle={locale === 'ar' ? 'اكتشف أحدث المقالات والرؤى القانونية في القانون التجاري والتدريب والتحول وحماية الملكية الفكرية.' : 'Explore our latest articles and legal insights on Commercial Law, Intellectual Property, and Business Legislation.'}
             />
 
             <div className="container" style={{ marginTop: '100px' }}>
@@ -114,7 +114,7 @@ export default async function BlogPage({
                                                 fontWeight: '800',
                                                 textTransform: 'uppercase'
                                             }}>
-                                                AI & Tech
+                                                Legal Insights
                                             </div>
                                         </div>
 

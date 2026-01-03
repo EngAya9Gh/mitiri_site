@@ -8,7 +8,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     const { locale } = await params;
     const t = await getTranslations({ locale, namespace: 'Services' });
     return {
-        title: `${t('title')} | WakeeL Technologies`,
+        title: `${t('title')} | MITRI IP & Law Office`,
         description: t('subtitle'),
     };
 }
@@ -18,10 +18,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
     const t = await getTranslations({ locale, namespace: 'Services' });
 
     const services = [
-        { key: 'webDev', icon: '💻', image: '/hero.png' },
-        { key: 'mobile', icon: '📱', image: '/mobile-app.png' },
-        { key: 'ai', icon: '🤖', image: '/ai-service.png' },
-        { key: 'marketing', icon: '📈', image: '/marketing.png' },
+        { key: 'webDev', icon: '🏢', image: '/commercial-law.png' },
+        { key: 'mobile', icon: '📄', image: '/commercial-law.png' },
+        { key: 'ai', icon: '⚖️', image: '/commercial-law.png' },
+        { key: 'marketing', icon: '🛡️', image: '/commercial-law.png' },
     ];
 
     return (
@@ -91,7 +91,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
                                     }}>
                                         <Image
                                             src={s.image}
-                                            alt={`${t(s.key as any)} - WakeeL Technologies`}
+                                            alt={`${t(s.key as any)} - MITRI IP & Law Office`}
                                             fill
                                             style={{ objectFit: 'cover' }}
                                             sizes="(max-width: 768px) 100vw, 50vw"

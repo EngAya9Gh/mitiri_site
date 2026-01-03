@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://wakeel.sa';
+    const baseUrl = 'https://mitrilawoffice.com';
     const locales = ['en', 'ar'];
     const pages = ['', '/services', '/about', '/blog', '/contact'];
 

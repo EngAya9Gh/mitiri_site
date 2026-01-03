@@ -39,15 +39,16 @@ export default function Header({ locale }: { locale: string }) {
             left: 0,
             right: 0,
             zIndex: 1000,
-            transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-            padding: scrolled ? '1rem 0' : '1.5rem 0',
-            background: scrolled || menuOpen ? 'white' : 'transparent',
-            borderBottom: scrolled || menuOpen ? '1px solid #E2E8F0' : 'none'
+            transition: 'all 0.3s ease',
+            padding: scrolled ? '0.5rem 0' : '1rem 0',
+            background: '#ffffff',
+            borderBottom: '1px solid #f1f5f9',
+            boxShadow: scrolled ? '0 10px 30px -10px rgba(0,0,0,0.05)' : 'none'
         }}>
             <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 {/* Logo */}
-                <Link href="/" style={{ textDecoration: 'none' }} onClick={() => setMenuOpen(false)}>
-                    <Logo color={(['/', '/services', '/about', '/blog'].includes(pathname) && !scrolled) ? 'light' : 'dark'} />
+                <Link href="/" style={{ textDecoration: 'none', transform: scrolled ? 'scale(0.95)' : 'scale(1)', transition: 'all 0.3s ease' }} onClick={() => setMenuOpen(false)}>
+                    <Logo color="dark" usePng={true} />
                 </Link>
 
                 {/* Desktop Nav */}
@@ -57,14 +58,13 @@ export default function Header({ locale }: { locale: string }) {
                             key={link.href}
                             href={link.href}
                             style={{
-                                color: link.active
-                                    ? 'var(--color-primary)'
-                                    : (['/', '/services', '/about', '/blog'].includes(pathname) && !scrolled) ? 'white' : 'var(--color-secondary)',
+                                color: link.active ? 'var(--color-primary)' : '#47586D',
                                 fontWeight: link.active ? '800' : '600',
-                                fontSize: '0.95rem',
+                                fontSize: '0.9rem',
                                 opacity: link.active ? 1 : 0.8,
                                 transition: 'all 0.2s ease',
-                                position: 'relative'
+                                textTransform: 'uppercase',
+                                letterSpacing: '1px'
                             }}
                             className="nav-link"
                         >
@@ -72,27 +72,29 @@ export default function Header({ locale }: { locale: string }) {
                         </Link>
                     ))}
 
+                    <div style={{ width: '1px', height: '24px', background: '#e2e8f0', margin: '0 8px' }}></div>
+
                     <button
                         onClick={() => switchLocale(locale === 'en' ? 'ar' : 'en')}
                         style={{
-                            background: (['/', '/services', '/about', '/blog'].includes(pathname) && !scrolled) ? 'rgba(255, 255, 255, 0.1)' : 'rgba(15, 23, 42, 0.05)',
-                            border: (['/', '/services', '/about', '/blog'].includes(pathname) && !scrolled) ? '1px solid rgba(255, 255, 255, 0.2)' : '1px solid rgba(15, 23, 42, 0.1)',
-                            color: (['/', '/services', '/about', '/blog'].includes(pathname) && !scrolled) ? 'white' : 'var(--color-secondary)',
-                            width: '40px',
-                            height: '40px',
-                            borderRadius: '10px',
+                            background: 'transparent',
+                            border: '1px solid #e2e8f0',
+                            color: '#47586D',
+                            padding: '6px 12px',
+                            borderRadius: '8px',
                             cursor: 'pointer',
-                            fontSize: '0.85rem',
+                            fontSize: '0.8rem',
                             fontWeight: '800',
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center'
+                            justifyContent: 'center',
+                            transition: 'all 0.2s'
                         }}
                     >
-                        {locale === 'en' ? 'AR' : 'EN'}
+                        {locale === 'en' ? 'العربية' : 'ENGLISH'}
                     </button>
 
-                    <Link href="/contact" className="btn-primary" style={{ padding: '0.7rem 1.8rem', borderRadius: '12px', fontSize: '0.9rem' }}>
+                    <Link href="/contact" className="btn-primary" style={{ padding: '0.8rem 2rem', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 800 }}>
                         {t('contact')}
                     </Link>
                 </nav>
@@ -106,7 +108,7 @@ export default function Header({ locale }: { locale: string }) {
                         border: 'none',
                         fontSize: '1.8rem',
                         cursor: 'pointer',
-                        color: (['/', '/services', '/about', '/blog'].includes(pathname) && !scrolled) ? 'white' : 'var(--color-secondary)'
+                        color: 'var(--color-secondary)'
                     }}
                     className="mobile-only"
                 >
@@ -135,9 +137,10 @@ export default function Header({ locale }: { locale: string }) {
                             href={link.href}
                             onClick={() => setMenuOpen(false)}
                             style={{
-                                fontSize: '1.2rem',
+                                fontSize: '1.1rem',
                                 fontWeight: '700',
-                                color: link.active ? 'var(--color-primary)' : 'var(--color-secondary)'
+                                color: link.active ? 'var(--color-primary)' : 'var(--color-secondary)',
+                                textTransform: 'uppercase'
                             }}
                         >
                             {link.label}
